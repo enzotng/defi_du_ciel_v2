@@ -3,7 +3,6 @@ using UnityEngine;
 public class EnnemiDeTraqueur : MonoBehaviour
 {
     public GameObject spellPrefab;
-    public GameObject player;
     public float minSpellDelay = 1f;
     public float maxSpellDelay = 5f;
     private float moveSpeed;
@@ -17,6 +16,7 @@ public class EnnemiDeTraqueur : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         ChangeDirection();
         spellTimer = Random.Range(minSpellDelay, maxSpellDelay);
     }
