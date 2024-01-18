@@ -67,7 +67,8 @@ public class EnnemiDeTraqueur : MonoBehaviour
         if (spellTimer <= 0)
         {
             CastSpellAtPlayer();
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
 
             // Modifiez cette formule si nécessaire pour réduire le délai en fonction de la proximité
             float delay = Mathf.Lerp(minSpellDelay / 10f, maxSpellDelay / 10f, distanceToPlayer / 10f);
