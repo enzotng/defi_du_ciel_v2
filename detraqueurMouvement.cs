@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnnemiDeTraqueur : MonoBehaviour
 {
     public GameObject spellPrefab;
-    public Transform player;
+    public GameObject player;
     public float minSpellDelay = 1f;
     public float maxSpellDelay = 5f;
     private float moveSpeed;
@@ -67,7 +67,9 @@ public class EnnemiDeTraqueur : MonoBehaviour
         {
             CastSpellAtPlayer();
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-            float delay = Mathf.Lerp(minSpellDelay, maxSpellDelay, distanceToPlayer / 10f);
+
+            // Modifiez cette formule si nécessaire pour réduire le délai en fonction de la proximité
+            float delay = Mathf.Lerp(minSpellDelay / 10f, maxSpellDelay / 10f, distanceToPlayer / 10f);
             spellTimer = Mathf.Clamp(delay, minSpellDelay, maxSpellDelay);
         }
     }
@@ -80,9 +82,10 @@ public class EnnemiDeTraqueur : MonoBehaviour
 
     void CastSpellAtPlayer()
     {
-        GameObject spell = Instantiate(spellPrefab, transform.position, Quaternion.identity);
+        Vector3 playerPosition = player.transform.position;
+        GameObject spell = Instantiate(spellPrefab, transform.position, Quaternion.LookRotation(playerPosition - transform.position));
         Rigidbody spellRigidbody = spell.GetComponent<Rigidbody>();
-        Vector3 spellDirection = (player.position - transform.position).normalized;
+        Vector3 spellDirection = (playerPosition - transform.position).normalized;
         spellRigidbody.AddForce(spellDirection * 10f, ForceMode.VelocityChange);
 
         float destroyDelay = 2.0f;
