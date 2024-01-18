@@ -7,6 +7,7 @@ public class EnnemiDeTraqueur : MonoBehaviour
     public float maxSpellDelay = 5f;
     private float moveSpeed;
     private float changeDirectionInterval;
+    private GameObject player;
     private Vector3 randomDirection;
     private Vector3 targetDirection;
     private float timer;
