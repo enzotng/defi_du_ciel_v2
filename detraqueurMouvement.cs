@@ -71,7 +71,7 @@ public class EnnemiDeTraqueur : MonoBehaviour
 
 
             // Modifiez cette formule si nécessaire pour réduire le délai en fonction de la proximité
-            float delay = Mathf.Lerp(minSpellDelay / 10f, maxSpellDelay / 10f, distanceToPlayer / 10f);
+            float delay = Mathf.Lerp(minSpellDelay / 3f, maxSpellDelay / 3f, distanceToPlayer / 10f);
             spellTimer = Mathf.Clamp(delay, minSpellDelay, maxSpellDelay);
         }
     }
