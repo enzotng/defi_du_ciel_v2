@@ -9,10 +9,7 @@ public class EnemyDefeat : MonoBehaviour
     {
         // Changer la skybox
         RenderSettings.skybox = defeatedSkyboxMaterial;
-        if (wallDestructionScript != null)
-        {
-            wall.SetActive(false);
-        }
+        wall.SetActive(false);
 
     }
 
