@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemyDefeat : MonoBehaviour
 {
-    public Material defeatedSkyboxMaterial; // Assignez cela dans l'inspecteur
-    public WallDestruction wallDestructionScript;
+    public Material defeatedSkyboxMaterial;
+    public GameObject wall // Assignez cela dans l'inspecteur
 
     public void OnEnemyDefeated()
     {
@@ -11,9 +11,9 @@ public class EnemyDefeat : MonoBehaviour
         RenderSettings.skybox = defeatedSkyboxMaterial;
         if (wallDestructionScript != null)
         {
-            wallDestructionScript.DestroyWall();
+            wall.SetActive(false);
         }
-        // Vous pouvez également utiliser DynamicGI.UpdateEnvironment() si l'éclairage global doit être mis à jour
+
     }
 
     // Supposons que cette fonction est appelée lorsque l'ennemi est vaincu
