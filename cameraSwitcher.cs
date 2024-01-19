@@ -2,28 +2,21 @@ using UnityEngine;
 
 public class CameraSwitcher : MonoBehaviour
 {
-    public Camera mainCamera; // Assignez la caméra principale dans l'inspecteur
-    public Camera menuCamera; // Assignez la caméra du menu dans l'inspecteur
+    public GameObject player; // GameObject pour le joueur VR
+    public Camera debutCamera; // Composant Camera pour la caméra de début
 
     private void Start()
     {
-        // Assurez-vous que la caméra principale est active au début
-        mainCamera.gameObject.SetActive(true);
-        menuCamera.gameObject.SetActive(false);
+        // Assurez-vous que le joueur VR est désactivé et que la caméra de début est activée au début
+        player.SetActive(false);
+        debutCamera.gameObject.SetActive(true);
     }
 
     public void SwitchCamera()
     {
-        // Vérifiez quelle caméra est actuellement active et basculez
-        if (mainCamera.gameObject.activeInHierarchy)
-        {
-            mainCamera.gameObject.SetActive(false);
-            menuCamera.gameObject.SetActive(true);
-        }
-        else
-        {
-            mainCamera.gameObject.SetActive(true);
-            menuCamera.gameObject.SetActive(false);
-        }
+        // Basculer entre le GameObject du joueur et la caméra de début
+        bool isPlayerActive = player.activeSelf;
+        player.SetActive(!isPlayerActive);
+        debutCamera.gameObject.SetActive(isPlayerActive);
     }
 }
